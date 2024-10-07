@@ -61,17 +61,3 @@ export async function Logout() {
   revalidatePath("/", "layout");
   redirect("/");
 }
-
-export async function getJobs() {
-  const supabase = createClient()
-
-  const { data, error } = await supabase.from("jobs").select("*");
-
-  if (error) {
-    console.log(error);
-    revalidatePath("/error", "layout");
-    redirect("/error");
-  }
-
-  return data;
-}

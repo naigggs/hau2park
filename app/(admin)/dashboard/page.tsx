@@ -1,7 +1,15 @@
-import React from 'react'
+import React from "react";
+import { chatGetParkingSpot } from "@/server-actions/parking/actions";
+import { Button } from "@/components/ui/button";
 
-export default function Dashboard() {
+export default async function Dashboard() {
   return (
-    <div>Dashboard</div>
-  )
+    <div>
+      <form>
+        <Button formAction={chatGetParkingSpot} variant="outline" size="sm">
+          Give me a parking spot.
+        </Button>
+      </form>
+    </div>
+  );
 }
