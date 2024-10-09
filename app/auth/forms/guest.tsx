@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { DatePicker } from "@/components/datePicker";
+// import { DatePicker } from "@/components/datePicker";
 import Link from "next/link";
 import { Guest } from "@/server-actions/auth/actions";
 
@@ -48,7 +48,7 @@ export default function GuestForm() {
           </div>
           <div className="space-y-2">
             <Label htmlFor="appointment_date">Appointment Date</Label>
-            <DatePicker name="appointment_date" onDateSelect={setSelectedDate} />
+            {/* <DatePicker name="appointment_date" onDateSelect={setSelectedDate} /> */}
           </div>
 
           {/* Time in and Time out side by side */}
