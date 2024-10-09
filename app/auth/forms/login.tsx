@@ -7,7 +7,7 @@ import { Login } from "@/server-actions/auth/actions";
 
 export default function LoginForm() {
   return (
-    <main className="container mx-auto">
+    <main className="container mx-auto w-[90%]">
       <div className="max-w-md mx-auto">
         <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
         <form className="space-y-4">
@@ -45,6 +45,12 @@ export default function LoginForm() {
           Don't have an account?{" "}
           <Link href="/auth/register" className="text-primary hover:underline">
             Sign up
+          </Link>
+        </p>
+        <p className="mt-4 text-center text-sm text-muted-foreground">
+          Guest user?{" "}
+          <Link href="/auth/guest" className="text-primary hover:underline">
+            Guest Form
           </Link>
         </p>
       </div>

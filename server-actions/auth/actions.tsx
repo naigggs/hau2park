@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/server";
+import { time } from "console";
 
 export async function Login(formData: FormData) {
   const supabase = createClient();
@@ -62,16 +63,25 @@ export async function Logout() {
   redirect("/");
 }
 
-export async function getJobs() {
-  const supabase = createClient()
+export async function Guest(formData: FormData){
+  const supabase = createClient();
 
-  const { data, error } = await supabase.from("jobs").select("*");
+  const data = {
+    name: formData.get("name") as string,
+    email: formData.get("email") as string,
+    appointment_date: formData.get("appointment_date") as string,
+    license_plate: formData.get("license_plate") as string,
+    time_in: formData.get("time_in") as string,
+    time_out: formData.get("time_out") as string,
+    purpose: formData.get("purpose") as string,
+  };
+
+  const { error } = await supabase.from("guest_users").insert([data]);
 
   if (error) {
-    console.log(error);
-    revalidatePath("/error", "layout");
-    redirect("/error");
+    console.error(error);
   }
 
-  return data;
+  revalidatePath("/auth/success", "layout");
+  redirect("/auth/success");
 }
