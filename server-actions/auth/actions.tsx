@@ -82,6 +82,6 @@ export async function Guest(formData: FormData){
     console.error(error);
   }
 
-  revalidatePath("/home", "layout");
-  redirect("/home");
+  revalidatePath("/auth/success", "layout");
+  redirect("/auth/success");
 }

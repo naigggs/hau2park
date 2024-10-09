@@ -16,7 +16,7 @@ export default async function GuestParkingDashboard() {
     .from("guest_users")
     .select("*");
 
-    console.log(requests);
+  console.log(requests);
 
   return (
     <div className="container mx-auto p-4">
@@ -29,8 +29,8 @@ export default async function GuestParkingDashboard() {
             <TableHead>Guest Name</TableHead>
             <TableHead>Date</TableHead>
             <TableHead>Duration</TableHead>
-            <TableHead>License Plate</TableHead>
             <TableHead>Purpose</TableHead>
+            <TableHead>License Plate</TableHead>
             <TableHead>Actions</TableHead>
           </TableRow>
         </TableHeader>
@@ -39,7 +39,9 @@ export default async function GuestParkingDashboard() {
             <TableRow key={request.id}>
               <TableCell>{request.name}</TableCell>
               <TableCell>{request.appointment_date}</TableCell>
-              <TableCell>{request.time_in} to {request.time_out}</TableCell>
+              <TableCell>
+                {request.time_in} to {request.time_out}
+              </TableCell>
               <TableCell>{request.purpose}</TableCell>
               <TableCell>{request.license_plate}</TableCell>
               <TableCell>
