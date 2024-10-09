@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import {
   Table,
   TableBody,
@@ -8,13 +7,20 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { createClient } from "@/utils/supabase/server";
+import GuestRequestRow from "@/components/guestRequestRow";
 
 export default async function GuestParkingDashboard() {
   const supabase = createClient();
 
   const { data: requests, error } = await supabase
     .from("guest_users")
-    .select("*");
+    .select("*")
+    .eq("is_approved", false) 
+    .eq("is_rejected", false);
+
+  if (error) {
+    console.error("Error fetching requests: ", error);
+  }
 
   console.log(requests);
 
@@ -36,21 +42,9 @@ export default async function GuestParkingDashboard() {
         </TableHeader>
         <TableBody>
           {requests?.map((request) => (
-            <TableRow key={request.id}>
-              <TableCell>{request.name}</TableCell>
-              <TableCell>{request.appointment_date}</TableCell>
-              <TableCell>
-                {request.time_in} to {request.time_out}
-              </TableCell>
-              <TableCell>{request.purpose}</TableCell>
-              <TableCell>{request.license_plate}</TableCell>
-              <TableCell>
-                <div className="flex space-x-2">
-                  <Button variant="default">Approve</Button>
-                  <Button variant="destructive">Reject</Button>
-                </div>
-              </TableCell>
-            </TableRow>
+            // DONT REMOVE: THIS IS REQUIRED FOR BACKEND
+            <GuestRequestRow key={request.id} request={request} />
+            // DONT REMOVE : THIS IS REQUIRED FOR BACKEND
           ))}
         </TableBody>
       </Table>
