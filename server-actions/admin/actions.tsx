@@ -23,7 +23,7 @@ export async function ApproveRequest(formData: FormData) {
   // Fetch the user's email and other details
   const { data: userData, error: fetchError } = await supabase
     .from('guest_users')
-    .select('email, name, appointment_date, purpose, license_plate')
+    .select('*')
     .eq('id', requestId)
     .single();
 
@@ -41,6 +41,10 @@ export async function ApproveRequest(formData: FormData) {
     appointment_date: userData.appointment_date,
     purpose: userData.purpose,
     license_plate: userData.license_plate,
+    time_in: userData.time_in,
+    time_out: userData.time_out,
+    is_rejected: userData.is_rejected,
+    is_approved: userData.is_approved
   };
 
   try {
