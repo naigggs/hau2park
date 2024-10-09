@@ -42,7 +42,7 @@ const GuestRequestRow: React.FC<GuestRequestRowProps> = ({ request }) => {
       <td>{request.purpose}</td>
       <td>{request.license_plate}</td>
       <td>
-        <div className="flex space-x-2">
+        <div className="flex space-x-2 mt-1">
           <Button variant="default" onClick={handleApprove}>
             Approve
           </Button>

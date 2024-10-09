@@ -15,7 +15,7 @@ export default async function GuestParkingDashboard() {
   const { data: requests, error } = await supabase
     .from("guest_users")
     .select("*")
-    .eq("is_approved", false) 
+    .eq("is_approved", false) // Condition for is_approve
     .eq("is_rejected", false);
 
   if (error) {
