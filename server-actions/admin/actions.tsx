@@ -36,6 +36,7 @@ export async function ApproveRequest(formData: FormData) {
 
   // Generate QR code with user details
   const qrData = {
+    id: requestId,
     name: userData.name,
     email: userEmail,
     appointment_date: userData.appointment_date,
